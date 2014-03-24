@@ -297,7 +297,7 @@ a.buy-button.blue { background: #4C728A !important; background-image: -webkit-gr
 
 #title h2, #buttons, #title h1 { min-width: 550px !important; }
 
-//  Add code styling stolen from https://gist.github.com/andyferra/2554919
+/*  Add code styling stolen from https://gist.github.com/andyferra/2554919 */
 code, tt {
     margin: 0 2px;
     padding: 0 5px;
