@@ -1,21 +1,34 @@
+//Force the queryform to have a minimum height equal to that of the sidebar so that content below it can take up the full width.
 var head = document.getElementsByTagName('head')[0];
 var sidebarStyle = document.createElement('style');
 sidebarStyle.type = 'text/css';
 head.appendChild(sidebarStyle);
 
-function refreshSidebarHeight(){
-    sidebarStyle.innerHTML = " div#query_form_with_buttons { min-height: " + (document.getElementById('sidebar').clientHeight - 50) + "px } ";
-}
-
-refreshSidebarHeight();
-
+function refreshQeuryFormHeight(resetHeight){
+    sidebarStyle.innerHTML = " div#query_form_with_buttons { min-height: " + (resetHeight === true ? "inherit } " : (document.getElementById('sidebar').clientHeight - 50) + "px } ");
+};
+refreshQeuryFormHeight();
 //Do this a few times at various intervals in case it takes a while for the sidebar to fill itself in.
-window.setTimeout(function(){
-    refreshSidebarHeight();
-}, 100);
-window.setTimeout(function(){
-    refreshSidebarHeight();
-}, 1000);
-window.setTimeout(function(){
-    refreshSidebarHeight();
-}, 5000);
+window.setTimeout(function(){ refreshQeuryFormHeight(); }, 100);
+window.setTimeout(function(){ refreshQeuryFormHeight(); }, 1000);
+window.setTimeout(function(){ refreshQeuryFormHeight(); }, 5000);
+
+//Make Sidebar collapsible
+var sidebar = document.getElementById('sidebar');
+var showhide = document.createElement('a');
+showhide.innerHTML = "Show/Hide"
+showhide.style.cssFloat = "right";
+showhide.style.padding = "17px";
+showhide.href = "#"
+showhide.onclick = function() {
+    sidebar.style.overflow = 'hidden';
+    if(sidebar.style.height != '30px') {
+        sidebar.style.height = '30px';
+        refreshQeuryFormHeight(true);
+    }
+    else {
+        sidebar.style.height = 'inherit';
+        window.setTimeout(function(){ refreshQeuryFormHeight(); }, 100);
+    }
+}
+sidebar.insertBefore(showhide, sidebar.firstChild);
