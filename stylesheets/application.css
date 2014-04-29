@@ -329,3 +329,9 @@ pre code, pre tt {
     background-color: transparent;
     border: none;
 }
+
+#sidebar { margin: -7px -7px 5px 15px; box-shadow: -6px 6px 5px #888888;  }
+div#content { width: auto; margin-right: 0; }
+div.issue table.attributes { width: auto; margin-right: 300px; }
+div.issue hr { width: auto; }
+form .attributes select { min-width: 125px;}
