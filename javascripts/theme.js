@@ -1,3 +1,4 @@
+
 function lessSidebar() {
     var sidebar = document.getElementById('sidebar');
     if(sidebar == null) { //Sidebar hasn't been made yet. Try again in a decisecond
@@ -26,17 +27,27 @@ function lessSidebar() {
     showhide.style.cssFloat = "right";
     showhide.style.padding = "17px";
     showhide.href = "#"
+    sidebar.style.overflow = 'hidden';
     showhide.onclick = function() {
-        sidebar.style.overflow = 'hidden';
         if(sidebar.style.height != '30px') {
             sidebar.style.height = '30px';
             refreshQeuryFormHeight(true);
+            localStorage.setItem('showHide', 'true');
         }
         else {
             sidebar.style.height = 'inherit';
             window.setTimeout(function(){ refreshQeuryFormHeight(); }, 100);
+            localStorage.setItem('showHide', 'false');
         }
     }
     sidebar.insertBefore(showhide, sidebar.firstChild);
+    
+    //Remember collapse setting
+    var showHidePreset = localStorage.getItem('showHide');
+    if(showHidePreset === 'true')
+    {   
+        sidebar.style.height = '30px';
+        refreshQeuryFormHeight(true);
+    }
 }
 lessSidebar();
